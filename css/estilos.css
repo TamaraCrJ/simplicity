@@ -47,7 +47,7 @@ h1{
     font-size: 25px;
 }
 h1 a {
-    background-color: black;
+    background-color: rgb(241, 36, 156);
     color: white;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: normal; /* remove o bold da letra, nesse font:font-weight vc pode deixar em italico  */
@@ -65,7 +65,7 @@ nav{
 
 nav a{
     font-weight: bold;
-    color: black;
+    color: rgb(25, 235, 182);
     padding: 10px;
     transition: 500ms; /*  da um efeito qdo abre o site */
     border-radius: 10px;
