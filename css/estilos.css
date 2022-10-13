@@ -1,0 +1,343 @@
+* {
+    box-sizing: border-box; /* deixa a imagem responsivel */
+}
+
+/* CSS RESET
+para resetar o CSS, PARA tirar essas bordas PADRÃO q vem do css, essa borda branca  */
+
+body,
+h1,
+h2,
+p,
+figure {
+     margin: 0;
+    padding: 0px;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* tornar a imagem flexivel */
+
+body {
+    font-family: 'Segoe UI'; /* para deixar todas as letras do body com essa fonte */
+}
+
+a {
+    text-decoration: none; /* para retirar os ____ dos links */
+    color: blue /* cor do link */
+}
+
+header {
+    text-align: center; /* centraliza só os itens do header  */
+     /* background-color: rgba(83, 235, 141, 0.541); cor de fundo do header, bom para vizualizar os espaços q e tem no header */
+    height: 100px;/* altura do header */
+
+   padding-top: 10px; /* puxa um pouco o simplicity para baixo, dá um espacamento p/ cima, para baixo é o padding-botton */
+    
+}
+
+h1, nav {
+    text-transform: uppercase;
+    /* paradeixar a letra toda maiuscula */
+}
+
+h1{
+    font-size: 25px;
+}
+h1 a {
+    background-color: black;
+    color: white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: normal; /* remove o bold da letra, nesse font:font-weight vc pode deixar em italico  */
+    padding: 5px 15px ; /* o segundo valor quero deixar a laretal maior */
+    border-radius: 10px;
+}
+nav{
+   
+    margin-top: 10px; /* ele modifica a margem da area do nav (home, produtos, servicos, contato) no caso do padding ele só iria deslocar a escrita do nav */
+    height: 50px;
+    display: flex; /* deixa flexivel os itens, por padrao ele deixa as frases a esquerda no top */
+    justify-content: space-around;/* centraliza o display do flex */
+    align-items: center;
+}
+
+nav a{
+    font-weight: bold;
+    color: black;
+    padding: 10px;
+    transition: 500ms; /*  da um efeito qdo abre o site */
+    border-radius: 10px;
+}
+/* regra de acionamento do link */
+
+nav a:hover, nav a:focus{  /* cria um efeito no menu, deixando-o com um fundo de outra cor */
+    background-color: rgb(219, 235, 228);
+}
+
+
+/* regras de conteúdo */
+.destaque {
+
+    background-image: url(../imagens/fundo-destaque.jpg);
+    height: 500px; /* controla uma altura q deseja, para ficar + aparente */
+    color: white;
+    text-align: center;
+    background-attachment: fixed; /* fixa a tela preta da imagem */
+
+    display: flex; /* flexibiliza o texto */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* deixa as letras uma embaxo da outra */
+    align-content:center ; /* alinha todos os itens  de uma vez, como um conteúdo só ( e assim, evitando espaços entre eles  */
+}
+ 
+.destaque h2 {
+    color: rgb(255, 6, 6);
+    font-size: 64px;
+    animation-name: aparecer;
+    animation-duration: 2s;
+
+}
+ .destaque p {
+
+    font-size: 32px;
+    font-weight: bold;
+    animation-name: aparecer;
+    animation-duration: 3s;
+    animation-delay: 2s;/* atrasa no inicio da animação */
+    animation-fill-mode: backwards;/* faz com que o texto já comece transparente (opacidade 0) apos o delay */
+ }
+
+ /* regra de animação */
+
+ @keyframes aparecer 
+ {
+    from{ opacity: 0;}
+    to{opacity: 1;}   
+ }
+
+ article h2 {
+
+    text-align: center;
+    padding: 20px;
+ }
+
+ article p{
+
+    padding: 8px 10px; /*  1º valor para cima e para baixo // 2ºvalor para a esquerda e direita */
+ }
+ figure{
+    padding: 0 10px;
+    text-align: center;/* centraliza a imagem  */
+ }
+
+ .historia {
+
+    background-image: url(../imagens/fundo-madeira.jpg); /* puxa a imagem */
+    background-attachment: fixed; /* fixa a tela */
+    color:white;
+    text-shadow: black 1px 1px 10px;
+    text-align: center; /* centraliza o texto */
+ }
+
+ .historia iframe{
+    width:100%; /* fica flexivel o video */
+    max-width:650px; /* limita o tamanho do video a crescer ate 650px */
+ }
+
+ .localizacao{
+    text-align: center;
+ }
+
+ .localizacao iframe 
+ {
+    width:100%;
+ }
+
+ footer{
+    height: 200px; /* mexe na altura do flooter */
+    background-color: black;
+    color: white;
+    font-weight: bold;
+
+    display: flex; /* centralizar o footer com a junçao dos J-C + A-I + T-A */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+ }
+
+ /* regras condicionais usando Media Queries  */
+
+.conteudo{
+    background-color: rgba(218, 218, 255, 0.397);
+    border-radius: 10px;
+}
+
+table, td, th {
+    border: solid 2px black;/* sempre sinalize a cor da borda, caso ao contrario vai entender q é a cor da linha */
+    border-collapse: collapse; /* remove espaçamento entre as bordas */
+}
+ 
+table{
+    margin: auto;
+    width: 80%;
+}
+
+th, /* é o cabeçado, q fica em negrito  */
+td{ 
+    padding: 5px;
+}
+
+tr:nth-child(odd) /* tr: linha da coluna// nth-child permite colorir a tabela automaticamente odd=impar even=par */ 
+{
+    background-color: rgb(111, 111, 212);
+}
+tr:nth-child(even) /* tr: linha da coluna// nth-child permite colorir a tabela automaticamente odd=impar even=par */ 
+{
+    background-color: rgba(189, 152, 178, 0.623);
+}
+
+
+th{
+    background-color: rgb(235, 122, 122);
+    color: white;
+}
+
+td:first-child {/* se quiser mudar só primeira coluna  */
+    text-transform: uppercase;
+}
+td:nth-child(2){color: rgb(161, 253, 173);} /* o numero 2 refere-se a 2 coluna, caso tenha a 3 é so colocar 3 */
+td:last-child {color: rgb(247, 0, 136);}
+
+.bola img
+{
+    border-radius: 100%;
+    transform: scale(0.9);/* começa com a imagem menor */
+    transition: 500ms; /* velocidade de ampliação da imagem */
+    box-shadow: rgb(26, 23, 23) 0 0 15px
+}
+
+.bola img:hover 
+{
+    transform: scale(1.1); /* termina com a escala maior */
+}
+
+/* regras para formulario */
+
+form{
+    background-color: #d7d1da;
+    width: 90%;
+    margin: auto;
+    padding: 16px;
+    border-radius: 5px;
+}
+
+
+#nome,#email,#nascimento, #assunto, #mensagem, #telefone{
+    
+    width: 100%;
+    height: 30px;
+    border-radius: 8px;
+    border: none;
+}
+
+#mensagem{
+    height: auto;
+    resize:none; /* não é recomendavel, desativa a habilitaçao do campo mensagem q altera o tamanho */
+}
+
+button{
+    border:none;
+    background-color: rgb(96, 105, 119);
+    color:white ;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+    text-transform: uppercase;
+}
+
+#assunto{
+    
+background-color: white;
+
+}
+button:hover,button:focus /* ;fucos faz a ms funçao do mouse no teclado */ {
+    background-color: rgb(99, 97, 245);
+}
+
+ @media screen and (min-width:530px) {
+
+    header{
+        display: flex;
+        justify-content: space-between; /* para ajustar os dos "blocos */
+        align-items: center;
+        height: 70px;
+        /* padding: 0 10px;  para alinhar o SIMPLICITY, tb pode ser assim */
+        padding-top: 0;
+    }
+
+    h1{
+        margin-left: 2vw;/* deixa o SIMPLICITY um pouco espaçado, não deixa grudado o simplicity no começo da pag */
+    }
+
+    nav{
+        margin-right: 2vw;
+        margin: 0;
+    }
+ }
+
+@media screen and (min-width: 800px){
+
+ h1 {
+    font-size: 30px ;
+ }
+
+ header {
+    height: 85px;
+ }
+ nav{
+    width: 70%;
+    
+}
+
+nav a {
+    padding: 20px;
+}
+
+ .destaque{
+    height: 550px;
+ }
+
+ p{font-size: 20px;}
+
+ }
+
+ @media screen and (min-width: 1000px){
+
+    .limitador {
+        max-width: 1000px;
+        margin: auto;
+    }
+
+ }
+    
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

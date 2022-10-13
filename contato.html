@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Simplicity</title>
+    <link rel="stylesheet" href="css/estilos.css">
+
+</head>
+
+<body>
+    <!-- em nosso site vms trabalhar com os itens abaixo -->
+    <!-- cabeçalho ({header}) NAV É O MENU DO SITE-->
+    <!-- conteudo principal (main) -->
+    <!-- rodape (footer)-->
+
+    <header class="limitador">
+
+        <h1> <a href="index.html"> Simplicity </a> </h1>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="produtos.html">Produtos</a>
+            <a href="servicos.html">Serviços</a>
+            <a href="contato.html">Contato</a>
+        </nav>
+
+
+
+    </header>
+
+    <main>
+
+        <article class="limitador conteudo">
+
+            <h2>Contato</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit laudantium aperiam commodi officiis.
+                Doloribus, excepturi nostrum dolorem voluptas laboriosam neque consectetur incidunt accusamus, debitis
+                fugiat laudantium maiores, molestiae officiis necessitatibus?</p>
+            <p>Illo necessitatibus suscipit eaque, distinctio laborum earum sequi aliquam ea voluptas quod tenetur,
+                perferendis, delectus eius iste odio repellendus. Itaque aspernatur, provident ab voluptatibus vel eum
+                accusantium distinctio? Cum, beatae.</p>
+
+            <p>Atenção: os campos Nome, email são obrigatórios.</p>
+
+            <!-- <form action="" method="get"></form> não usar pq os dados ficam expostos -->
+
+            <!-- o "form" serve como uma especie de conteiner -->
+            <!-- formulario de cadastro usar o post -->
+            <form id="my-form" action="https://formspree.io/f/xzbwgowq" method="post">
+                <p>
+                    <label for="nome">Nome:</label>
+                    <!-- label for"" significa=rotulo para o campo nome, sempre colocar o mesmo nome q vc colocor no id e no name do campo input -->
+                    <input type="text" name="nome" id="nome" required>
+                </p>
+
+                <p>
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" id="email">
+                </p>
+
+                <p>
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" name="telefone" id="telefone">
+                </p>
+
+                <p>
+                    <label for="nascimento">Data de Nascimento</label>
+                    <input type="date" name="nascimento" id="nascimento">
+                </p>
+
+                <p>
+                    <!-- opçao RADIO TEM A FUNÇÃO DE UNICA ESCOLHA -->
+                    Sexo: <br><!-- no caso do radio, o name tem q ser igual pois significa q é do grupo SEXO -->
+
+                    <input type="radio" name="sexo" id="masculino" value="Masculino"><!-- campo q a pessoa escolhe -->
+                    <label for="masculino">Masculino</label>
+
+                    <input type="radio" name="sexo" id="feminino" value="Feminino"><!-- campo q a pessoa escolhe -->
+                    <label for="masculino">Feminino</label>
+
+                    <input type="radio" name="sexo" id="nao-responder"value="Não Respondeu"><!-- campo q a pessoa escolhe -->
+                    <label for="masculino">Prefiro não responder</label>
+                </p>
+
+                <!-- opçao CHECKBOX TEM A FUNÇÃO DE MULTIPLAS ESCOLHAS -->
+                <p>
+                    Interesses: <br>
+
+                    <input type="checkbox" name="interesses" id="design" value="Design">
+                    <label for="">Design </label>
+
+                    <input type="checkbox" name="interesses" id="programacao"value="Programação">
+                    <label for="">Programação </label>
+
+                    <input type="checkbox" name="interesses" id="marketing"value="Marketing">
+                    <label for="">Marketing </label>
+
+                    <!-- no checkbox o "name" tem q ser o msm pq o "design, programacao e marketing" pertence ao mesmo grupo no caso o grupo "interesses, o id são distintos"  -->
+                </p>
+                <p>
+                    <label for="assunto"> Assunto </label>
+                    <select name="assunto" id="assunto">
+                        <option value=""></option>  
+                        <option value="">Dúvidas</option>
+                        <option value="">Reclamações</option>
+                        <option value="">Elogios</option>
+                        <option value="">Outros</option>
+                    </select>
+                </p>
+
+                <p>
+                    <label for="mensagem"> Mensagem (Máxima de 500 caracteres)</label>
+                    <textarea name="mensagem" id="mensagem" cols=30 rows="7" maxlength="500"></textarea>
+                </p>
+
+                <p>
+                    <button type="submit">Enviar dados</button><br>
+                </p>
+
+                <p id="my-form-status"></p>
+
+
+            </form>
+
+
+        </article>
+
+
+    </main>
+
+    <footer>
+        <p>
+            Simplicity é um site fictício desenvolvido educacionalmente<br>
+            Senac Penha
+        </p>
+    </footer>
+
+    <script>
+        var form = document.getElementById("my-form");
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            var status = document.getElementById("my-form-status");
+            var data = new FormData(event.target);
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    status.innerHTML = "Obrigada, pelo seu contato!";
+                    form.reset()
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+                        } else {
+                            status.innerHTML = "Oops! Ocorreu um problema ao enviar"
+                        }
+                    })
+                }
+            }).catch(error => {
+                status.innerHTML = "Oops! Ocorreu um problema ao enviar, me chama no zap (11)9852-6635"
+            });
+        }
+        form.addEventListener("submit", handleSubmit)
+    </script>
+
+</body>
+
+</html>
